@@ -8,11 +8,13 @@ routeList = ['posts', 'comments', 'users']
 [
     {
         userId: integer(1-10),
+        username: string(shortText),
         postTitle: string(shortText),
         postContent: string(longText)
     },
     {
         userId: integer(1-10),
+        username: string(shortText),
         postTitle: string(shortText),
         postContent: string(longText)
     }
@@ -24,7 +26,7 @@ routeList = ['posts', 'comments', 'users']
     {
         commentContent: string(shortText),
         userDetails: {
-            name: string(shortText),
+            username: string(shortText),
             email: string(email),
             userId: integer(0-10)
         }
