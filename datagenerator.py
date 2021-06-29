@@ -34,6 +34,75 @@ def generatePostData():
         in1 = mycol.insert_one(posts)
     print(in1)
 
+def longstringUpload(x):
+    mydb = myclient["sampleApiGenerator"]
+    mycol = mydb["longStrings"]
+    randBodyLen = random.randint(200, 1000)
+    randBody = ""
+    for i in range(randBodyLen):
+        randChar = random.randint(97, 122)
+        randBody += str(chr(randChar))
+    longString = {
+        "_id": x,
+        "longStr": randBody
+    }
+    dbupload = mycol.insert_one(longString)
+
+
+def shortStringUpload(x):
+    mydb = myclient["sampleApiGenerator"]
+    mycol = mydb["shortStrings"]
+    randBodyLen = random.randint(50, 199)
+    randBody = ""
+    for i in range(randBodyLen):
+        randChar = random.randint(97, 122)
+        randBody += str(chr(randChar))
+    shortString = {
+        "_id": x,
+        "shortStr": randBody
+    }
+    dbupload = mycol.insert_one(shortString)
+
+
+# . -> \u002e
+def randomEmails(x):
+    mydb = myclient["sampleApiGenerator"]
+    mycol = mydb["emails"]
+    randEmaillens = random.randint(8, 20)
+    randEmail = ""
+    for i in range(randEmaillens):
+        randChar = random.randint(97, 122)
+        randEmail += str(chr(randChar))
+    randEmail += "@randomMail\u002ecom"
+    email = {
+        "_id": x,
+        "shortStr": randEmail
+    }
+    dbupload = mycol.insert_one(email)
+
+# Random numbers
+def randomNumbers(x):
+    mydb = myclient["sampleApiGenerator"]
+    mycol = mydb["nums"]
+    randBodyLen = random.randint(5, 11)
+    randNum = ""
+    for i in range(randBodyLen):
+        randChar = random.randint(0, 9)
+        randNum += str(randChar)
+    # print(randNum, end="\n")
+    randNum = int(randNum)
+    nums = {
+        "_id": x,
+        "number": randNum
+    }
+    dbupload = mycol.insert_one(nums)
+
+
 
 if __name__ == '__main__':
-    generatePostData()
+    # generatePostData()
+    for x in range(400):
+        longstringUpload(x)
+        randomNumbers(x)
+        randomEmails(x)
+        shortStringUpload(x)
