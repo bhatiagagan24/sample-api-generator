@@ -3,6 +3,7 @@
 from flask import Flask
 from flask.globals import request
 import pymongo
+import returnResponse
 
 app = Flask(__name__)
 
@@ -29,7 +30,10 @@ def returnValue(value):
             print(num)
         except:
             num = 1
-        return "Value found"
+        resp = returnResponse.returnJson(value, num)
+        print(type(resp))
+        return resp
+        # return "Value found"
     else:
         return "Value not found"
 
