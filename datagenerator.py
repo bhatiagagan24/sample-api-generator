@@ -99,10 +99,34 @@ def randomNumbers(x):
 
 
 
+def generateUserNames(x):
+    mydb = myclient["sampleApiGenerator"]
+    mycol = mydb["usernames"]
+    randBodyLen = random.randint(5,10)
+    # randNumPosition = [y for y in range(0, random.randint(0, randBodyLen-1))]
+    randNumPositions = [y for y in range(random.randint(1, int(randBodyLen/2)), random.randint(int(randBodyLen/2)+1, randBodyLen-1))]
+    print(randNumPositions)
+    userName = ""
+    for y in range(randBodyLen):
+        if y in randNumPositions:
+            userName += str(random.randint(0,9))
+        else:
+            randChar = random.randint(97, 122)
+            userName += str(chr(randChar))
+    username = {
+        "_id": x,
+        "username": userName,
+    }
+    dbupload = mycol.insert_one(username)
+
+
+
+
 if __name__ == '__main__':
     # generatePostData()
     for x in range(400):
-        longstringUpload(x)
-        randomNumbers(x)
-        randomEmails(x)
-        shortStringUpload(x)
+        # longstringUpload(x)
+        # randomNumbers(x)
+        # randomEmails(x)
+        # shortStringUpload(x)
+        generateUserNames(x)

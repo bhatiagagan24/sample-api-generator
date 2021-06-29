@@ -6,12 +6,17 @@ import pymongo
 
 app = Flask(__name__)
 
-routeList = ['posts', 'comments', 'albums', 'photos', 'todos', 'users']
 
+
+routeList = ['posts', 'comments', 'users']
 
 @app.route('/')
 def homePage():
-    return "This is the home page"
+    return '''This is the home page. Predefined routelist is posts, comments,
+    users. The request is of the format /posts, /comments, /users. Add a count get 
+    request to get the number of responses. Otherwise it returns only one response.
+
+    '''
 
 @app.route('/<value>')
 def returnValue(value):
@@ -19,6 +24,9 @@ def returnValue(value):
     if value in routeList:
         try:
             num = request.args.get("count")
+            num = int(num)
+            print(type(num))
+            print(num)
         except:
             num = 1
         return "Value found"

@@ -1,0 +1,54 @@
+Format for json response for different endpoints
+
+routeList = ['posts', 'comments', 'users']
+
+-------------------------------------------------------------------
+/posts     =>
+
+[
+    {
+        userId: integer(1-10),
+        postTitle: string(shortText),
+        postContent: string(longText)
+    },
+    {
+        userId: integer(1-10),
+        postTitle: string(shortText),
+        postContent: string(longText)
+    }
+]
+
+----------------------------------------------------------------------
+/comments =>
+[
+    {
+        commentContent: string(shortText),
+        userDetails: {
+            name: string(shortText),
+            email: string(email),
+            userId: integer(0-10)
+        }
+    },
+    {
+        commentContent: string(shortText),
+        userDetails: {
+            username: string(shortText),
+            email: string(email),
+            userId: integer(0-10)
+        }
+    },
+]
+------------------------------------------------------------------------
+/users =>
+[
+    {
+        username: string(shortText),
+        email: string(email),
+    },
+    {
+        username: string(shortText),
+        email: string(email),
+    }
+]
+
+--------------------------------------------------------------------------
